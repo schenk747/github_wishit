@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+		<head>
+			<link rel="stylesheet" type="text/css" href="{% static 'wishit/css/style.css' %}" \>
+			<script src="{% static 'wishit/js/jquery-1.11.1.js' %}"></script>
+		</head>
+		<body>
+
+			{% block content %}
+
+			{% endblock content%}
+			<button id="test_button" type="button">Click Me!</button>
+			<script>
+				$(document).ready(function() {
+					$("#test_button").click(function() {
+						$("a").toggle();
+					});
+				});
+			</script>
+			
+		</body>
+</html>

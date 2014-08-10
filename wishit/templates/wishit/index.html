@@ -1,0 +1,21 @@
+{% extends "wishit/base.html" %}
+
+{% load staticfiles %}
+<!-- 
+<link rel="stylesheet" type="text/css" href="{% static 'wishit/style.css' %}" \>
+-->
+
+{% block content %}
+	{% if gift_list %}
+		<ul>
+		{% for gift in gift_list %}
+		<li><a href="{% url 'wishit:details' gift.id %}">Detail</a></li>
+		<li><a href="{% url 'wishit:texts' gift.id %}">Text</a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No gifts available.</p>
+	{% endif %}
+{% endblock content %}
+
+
