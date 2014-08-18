@@ -2,22 +2,22 @@
 <!DOCTYPE html>
 <html>
 		<head>
-			<link rel="stylesheet" type="text/css" href="{% static 'wishit/css/style.css' %}" \>
+			<link rel="stylesheet" type="text/css" href="{% static 'wishit/css/base.css' %}" \>
 			<script src="{% static 'wishit/js/jquery-1.11.1.js' %}"></script>
 		</head>
 		<body>
+			<div id="wrapper>"
+				{% block content %}
 
-			{% block content %}
-
-			{% endblock content%}
-			<button id="test_button" type="button">Click Me!</button>
-			<script>
-				$(document).ready(function() {
-					$("#test_button").click(function() {
-						$("a").toggle();
+				{% endblock content%}
+				<button id="test_button" type="button">Click Me!</button>
+				<script>
+					$(document).ready(function() {
+						$("#test_button").click(function() {
+							$("a").toggle();
+						});
 					});
-				});
-			</script>
-			
+				</script>
+				</div>
 		</body>
 </html>
