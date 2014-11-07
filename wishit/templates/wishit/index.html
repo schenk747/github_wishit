@@ -1,21 +1,67 @@
 {% extends "wishit/base.html" %}
 
 {% load staticfiles %}
-<!-- 
-<link rel="stylesheet" type="text/css" href="{% static 'wishit/style.css' %}" \>
--->
 
 {% block content %}
-	{% if gift_list %}
-		<ul>
-		{% for gift in gift_list %}
-		<li><a href="{% url 'wishit:details' gift.id %}">Detail</a></li>
-		<li><a href="{% url 'wishit:texts' gift.id %}">Text</a></li>
-		{% endfor %}
-		</ul>
-	{% else %}
-		<p>No gifts available.</p>
-	{% endif %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<h1>Wishit <!--<small>Organize and share your wishes</small>--></h1>
+		<p>Organize and share your wishes</p>
+
+
+		<form id="login_form" action="{% url 'wishit:login' %}" method="post" role="form" >
+			{% csrf_token %}
+						<div class="form-group vspace">
+							<label for="username">Username:</label>
+							<input type="text" class="form-control" name="username" id="username" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Password:</label>
+							<input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
+						</div>
+						<!-- #messages is where the messages are placed inside -->
+						<div class="form-group">
+							 <div id="messages"></div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-inverse">Log in</button>
+						</div>
+		</form>
+	</div>
+</div>
+
+
+{% if login_failed %} <p>The combination of username and pasword was incorrect.</p> {% endif %}
+
+<script>
+$(document).ready(function(){
+    $('#login_form').bootstrapValidator({
+        container: '#messages',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					username : {
+						validators: {
+								notEmpty: {
+									message: 'The username is required to be filled out'
+								}
+						}
+					},
+					password: {
+						validators: {
+								notEmpty: {
+									message: 'The password is required to be filled out'
+								}
+						}
+					}
+				}
+			});
+});
+</script>
 {% endblock content %}
 
 
