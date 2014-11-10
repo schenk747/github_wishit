@@ -10,7 +10,7 @@
 		<p>Organize and share your wishes</p>
 
 
-		<form id="login_form" action="{% url 'wishit:login' %}" method="post" role="form" >
+		<form class="login_form" action="{% url 'wishit:login' %}" method="post" role="form" >
 			{% csrf_token %}
 						<div class="form-group vspace">
 							<label for="username">Username:</label>
@@ -22,7 +22,7 @@
 						</div>
 						<!-- #messages is where the messages are placed inside -->
 						<div class="form-group">
-							 <div id="messages"></div>
+							 <div class="messages"></div>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-inverse">Log in</button>
@@ -34,34 +34,6 @@
 
 {% if login_failed %} <p>The combination of username and pasword was incorrect.</p> {% endif %}
 
-<script>
-$(document).ready(function(){
-    $('#login_form').bootstrapValidator({
-        container: '#messages',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-				},
-				fields: {
-					username : {
-						validators: {
-								notEmpty: {
-									message: 'The username is required to be filled out'
-								}
-						}
-					},
-					password: {
-						validators: {
-								notEmpty: {
-									message: 'The password is required to be filled out'
-								}
-						}
-					}
-				}
-			});
-});
-</script>
 {% endblock content %}
 
 

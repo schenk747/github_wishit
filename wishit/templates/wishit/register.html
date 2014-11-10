@@ -1,0 +1,36 @@
+{% extends "wishit/base.html" %}
+
+
+Create an account
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<h1>Create an account</h1>
+
+		<form class="login_form" action="" method="post" role="form">
+				{% csrf_token %}
+			<div class="form-group">
+					<label for="id_username">Username:</label>
+					<input id="id_username" maxlength="30" name="username" type="text" class="form-control" placeholder="Enter a username" />
+			</div>
+			<div class="form-group">
+				<label for="id_password1">Password:</label>
+				<input id="id_password1" name="password1" type="password" class="form-control" placeholder="Enter a password" />
+			</div>
+			<div class="form-group">
+				<label for="id_password2">Password confirmation:</label> 
+				<input id="id_password2" name="password2" type="password" class="form-control" placeholder="Re-enter password" />
+			</div>
+			<div class="form-group">
+				<div class="messages"></div>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-inverse" value="Create the account">
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock content %}
+

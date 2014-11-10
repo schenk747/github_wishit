@@ -13,4 +13,6 @@ urlpatterns = patterns('',
 		url(r'^logout', views.logout_user, name='logout'),
 		url(r'^update_wishlist', views.update_wishlist, name="update_wl"),
 		url(r'^delete_gift', views.delete_gift, name="delete_g"),
+		url(r'^update_gift', views.update_gift, name="update_g"),
+		url(r'^register', views.register, name="register"),
 )

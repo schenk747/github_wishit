@@ -8,6 +8,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
 import simplejson
 from django.template.loader import render_to_string
+import pprint
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.template import RequestContext
 
 #def index(request):
 #	gifts = Gift.objects.all()
@@ -116,4 +120,29 @@ def delete_gift(request):
 	#return HttpResponse(simplejson.dumps(response_dict), mimetype='application/javascript')
 	html = render_to_string('wishit/sub_gift.html', context)
 	return HttpResponse(html, mimetype='application/javascript')
+
+@csrf_protect
+def update_gift(request):
+	gift_id = request.POST['gift_id']
+	title = request.POST['title']
+	text = request.POST['text']
+	gift = Gift.objects.get(pk=gift_id)
+	gift.title = title
+	gift.text = text
+	gift.save()
+	wishlists = get_list_or_404(WishList.objects.order_by('id'))
+	context = {'wishlist' : wishlists}
+	html = render_to_string('wishit/sub_gift.html', context)
+	return HttpResponse(html, mimetype='application/javascript')
+
+@csrf_protect
+def register(request):
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			new_user = form.save()
+			return HttpResponseRedirect('/wishit/home.html')
+	else:
+		form = UserCreationForm()
+	return render_to_response("wishit/register.html", {'form': form}, context_instance=RequestContext(request))
 
