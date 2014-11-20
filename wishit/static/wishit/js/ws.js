@@ -136,6 +136,10 @@ $(document).ready(function(){
 						validators: {
 								notEmpty: {
 									message: 'The password is required to be filled out'
+								},
+								identical: {
+									field: 'password2',
+									message: 'The password and its confirm are not the same'
 								}
 						}
 					},
@@ -143,6 +147,10 @@ $(document).ready(function(){
 						validators: {
 								notEmpty: {
 									message: 'The password is required to be filled out'
+								},
+								identical: {
+									field: 'password1',
+									message: 'The password and its confirm are not the same'
 								}
 						}
 					}

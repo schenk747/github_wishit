@@ -79,6 +79,7 @@ def login_user(request):
 	username = request.POST['username']
 	password = request.POST['password']
 	user = authenticate(username=username, password=password)
+	print type(user)
 	if user is not None:
 		if user.is_active:
 			login(request,user)
@@ -141,7 +142,9 @@ def register(request):
 		form = UserCreationForm(request.POST)
 		if form.is_valid():
 			new_user = form.save()
-			return HttpResponseRedirect('/wishit/home.html')
+			new_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+			login(request, new_user)
+			return HttpResponseRedirect(reverse('wishit:home'))
 	else:
 		form = UserCreationForm()
 	return render_to_response("wishit/register.html", {'form': form}, context_instance=RequestContext(request))

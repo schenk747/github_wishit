@@ -8,7 +8,9 @@ Create an account
 	<div class="col-sm-6 col-sm-offset-2">
 
 		<h1>Create an account</h1>
-
+		{% for field, errors in form.errors.items %}
+			{{ errors }}
+		{% endfor %}	
 		<form class="login_form" action="" method="post" role="form">
 				{% csrf_token %}
 			<div class="form-group">
@@ -32,5 +34,11 @@ Create an account
 		</form>
 	</div>
 </div>
-{% endblock content %}
 
+<!--
+  <form action="" method="post">
+      {{ form.as_p }}
+      <input type="submit" value="Create the account">
+  </form>
+{% endblock content %}
+-->
