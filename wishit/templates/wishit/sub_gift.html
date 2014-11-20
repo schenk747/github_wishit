@@ -1,0 +1,12 @@
+{% for wl in wishlist %}
+<h3>{{wl.title}}</h3>
+	{% for g in wl.gift_list.all|dictsort:"id" %}
+	<h5 contenteditable="false" class="btn-align">{{ g.title }} <small>{{ g.text }}</small>
+		<span class="item_btn_group">
+			<button class="btn btn-danger gift-button not-visible del_edit_btn" type="button" data-toggle="modal" data-id="{{ g.id }}" data-title="{{ g.title }}" data-target="#myModal"><span class=" glyphicon glyphicon-remove"></span></button>
+			<button id="edit_btn" class="btn btn-warning gift-button not-visible del_edit_btn" type="button" data-toggle="modal" data-id="{{ g.id }}" data-title="{{ g.title }}" data-text="{{ g.text }}" data-target="#my_edit_modal"><span class=" glyphicon glyphicon-pencil"></span></button>
+		</span>
+	</h5>
+	{% endfor %}
+{% endfor %}
+
